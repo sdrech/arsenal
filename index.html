@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Історичний Арсенал — зустрічі та лекції з Іриною Сахно</title>
+<link rel="icon" href="icon_only.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --white: #FFFFFF;
+    --bg-soft: #FCFCFA;
+    --ink: #201D1A;
+    --ink-soft: #625C52;
+    --lemon: #F2DC3E;
+    --lemon-soft: #FBF3C4;
+    --lemon-deep: #8A7412;
+    --sky: #59B7DE;
+    --sky-soft: #DFF3FA;
+    --sky-deep: #276B87;
+    --line: #ECE9E1;
+
+    --header-pad-top: 28px;
+    --header-logo-h: 62px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--white);
+    color: var(--ink);
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .serif{
+    font-family: 'Spectral', serif;
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  a{ color: inherit; }
+  img{ max-width: 100%; }
+
+  .wrap{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+    z-index: 30;
+    overflow-anchor: none;
+  }
+
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: var(--header-pad-top) 28px;
+    max-width: 900px;
+    margin: 0 auto;
+    gap: 16px;
+    transition: padding .28s ease;
+  }
+
+  header.scrolled .header-inner{ padding: 12px 28px; }
+
+  .brand{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    text-decoration:none;
+    color: var(--ink);
+    flex-shrink: 0;
+  }
+
+  .brand img{
+    height: var(--header-logo-h);
+    width:auto;
+    display:block;
+    transition: height .28s ease;
+  }
+
+  header.scrolled .brand img{ height: 30px; }
+
+  nav{ display:flex; gap: 22px; flex-wrap: wrap; }
+
+  nav a{
+    text-decoration:none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--sky-deep);
+    border-bottom: 2px solid transparent;
+    padding-bottom: 2px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  nav a:hover{ color: var(--sky); border-color: var(--lemon); }
+
+  @media (max-width: 760px){ nav{ display:none; } }
+
+  /* ---------- hero + about (merged, first section) ---------- */
+  .hero-about{
+    position: relative;
+    overflow: hidden;
+    padding: 72px 0 64px;
+    background: var(--white);
+  }
+
+  :root{
+    --blob-lemon-size: clamp(420px, 70vw, 1500px);
+    --blob-sky-size: clamp(420px, 55vw, 1500px);
+  }
+
+  .blob{
+    position:absolute;
+    border-radius: 50%;
+    z-index: 0;
+    opacity: 0.55;
+  }
+  .blob-lemon{
+    width: var(--blob-lemon-size);
+    height: var(--blob-lemon-size);
+    top: calc(30px - (var(--blob-lemon-size) / 2));
+    right: calc(70px - (var(--blob-lemon-size) / 2));
+    background: radial-gradient(circle closest-side, var(--lemon-soft) 0px, var(--lemon-soft) 170px, transparent 100%);
+  }
+  .blob-sky{
+    width: var(--blob-sky-size);
+    height: var(--blob-sky-size);
+    bottom: calc(30px - (var(--blob-sky-size) / 2));
+    left: calc(50px - (var(--blob-sky-size) / 2));
+    background: radial-gradient(circle closest-side, var(--sky-soft) 0px, var(--sky-soft) 130px, transparent 100%);
+  }
+
+  .hero-about > .wrap{ position: relative; z-index: 1; }
+
+  .hero-about h1{
+    font-size: clamp(2rem, 4.2vw, 2.9rem);
+    line-height: 1.16;
+    max-width: 27ch;
+  }
+
+  .hero-about p.lede{
+    margin-top: 20px;
+    max-width: 56ch;
+    font-size: 1.08rem;
+    color: var(--ink-soft);
+  }
+
+  .hero-actions{ display:flex; gap: 14px; margin-top: 30px; flex-wrap: wrap; }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+    padding: 13px 22px;
+    text-decoration:none;
+    font-family:'Manrope',sans-serif;
+    font-weight: 700;
+    font-size: 0.93rem;
+    border-radius: 8px;
+    transition: transform 0.15s ease, background 0.15s ease, opacity .15s ease, border-color .15s ease, color .15s ease;
+  }
+
+  .btn-primary{ background: var(--sky-deep); color: var(--white); }
+  .btn-primary:hover{ background: var(--sky); }
+
+  .btn-ghost{ border: 1.5px solid var(--sky-deep); color: var(--sky-deep); }
+  .btn-ghost:hover{ background: var(--sky-soft); }
+
+  .hero-strip{
+    margin-top: 44px;
+    height: 6px;
+    width: 100%;
+    border-radius: 6px;
+    background: linear-gradient(90deg, var(--lemon) 0%, var(--lemon) 46%, var(--sky) 54%, var(--sky) 100%);
+  }
+
+  .about-grid{ display: grid; grid-template-columns: 1.3fr 0.9fr; gap: 44px; margin-top: 52px; }
+  @media (max-width: 720px){ .about-grid{ grid-template-columns: 1fr; } }
+  .about-grid p{ color: var(--ink-soft); font-size: 1.02rem; margin: 0 }
+  .about-grid p + p{ margin-top: 6px; }
+
+  .pull{ background: var(--lemon-soft); border-radius: 10px; padding: 28px 35px; height:fit-content; }
+  .pull p{
+    font-family:'Spectral', serif;
+    font-style: italic;
+    font-size: 1.12rem;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .pull span{
+    display:block; margin-top: 12px;
+    font-family:'Manrope',sans-serif; font-style: normal;
+    font-size: 0.85rem; font-weight: 700; color: var(--lemon-deep);
+    text-align: right;
+  }
+
+  /* ---------- section shared ---------- */
+  section{ padding: 60px 0; border-top: 1px solid var(--line); }
+
+  .section-head{
+    display:flex; align-items: baseline; justify-content: space-between;
+    gap: 24px; margin-bottom: 36px; flex-wrap: wrap;
+  }
+  .section-head h2{ font-size: 1.6rem; }
+  .section-mark{ font-size: 0.85rem; color: var(--ink-soft); white-space: nowrap; }
+
+  /* ---------- colored full-bleed sections ---------- */
+  #events{ background: var(--sky-soft); border-top: none; position: relative; }
+  #materials{ background: var(--lemon-soft); border-top: none; position: relative; }
+  #quiz{ background: var(--sky-soft); border-top: none; position: relative; }
+  #partners{ background: var(--lemon-soft); border-top: none; position: relative; }
+  #contact{ background: var(--sky-soft); border-top: none; position: relative; }
+
+  #events > .wrap,
+  #materials > .wrap,
+  #quiz > .wrap,
+  #partners > .wrap,
+  #contact > .wrap{
+    position: relative;
+    z-index: 1;
+  }
+
+  #events::after,
+  #materials::after,
+  #quiz::after,
+  #partners::after,
+  #contact::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 150px;
+    background: linear-gradient(to bottom, transparent, var(--white));
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ---------- events ---------- */
+  .year-group + .year-group{ margin-top: 26px; }
+  .year-label{
+    font-family:'Spectral', serif; font-size: 1rem; font-weight: 600;
+    color: var(--sky-deep); margin-bottom: 12px;
+  }
+
+  .event-row{
+    display:grid;
+    grid-template-columns: 100px 1fr auto;
+    gap: 18px;
+    align-items:center;
+    padding: 16px 18px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: border-color .15s ease;
+    text-decoration: none;
+    color: inherit;
+  }
+  .event-row:hover{ border-color: var(--sky); }
+
+  @media (max-width: 640px){
+    .event-row{ grid-template-columns: 1fr; gap: 6px; }
+    .event-date{ order:1; }
+    .event-main{ order:2; }
+    .event-tag{ order:3; justify-self: flex-start; }
+  }
+
+  .event-date{ font-size: 0.85rem; font-weight: 700; color: var(--ink-soft); white-space: nowrap; }
+  .event-title{ font-size: 0.98rem; font-weight: 600; }
+  .event-loc{ font-size: 0.85rem; color: var(--ink-soft); margin-top: 3px; }
+
+  .event-tags{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: flex-end;
+    align-items: center;
+    max-width: 220px;
+  }
+  .event-tag{
+    font-size: 0.72rem; font-weight: 700; padding: 5px 11px;
+    border-radius: 999px; white-space: nowrap;
+    /* justify-self: end; */
+  }
+  @media (max-width: 640px){
+    .event-row{ grid-template-columns: 1fr; gap: 6px; }
+    .event-date{ order:1; }
+    .event-main{ order:2; }
+    .event-tags{ order:3; justify-content: flex-start; }
+  }
+  .tag-arsenal{ background: var(--sky-soft); color: var(--sky-deep); }
+  .tag-zdybanka{ background: var(--lemon-soft); color: var(--lemon-deep); }
+  .tag-created{ background: #F1EFE9; color: var(--ink-soft); }
+  .tag-ucc{ background: #F1EFE9; color: var(--ink-soft); }
+
+  .events-note{ margin-top: 24px; font-size: 0.95rem; color: var(--ink-soft); }
+  .events-note a{ color: var(--sky-deep); font-weight: 700; text-decoration:none; }
+  .events-note a:hover{ text-decoration:underline; }
+
+  /* ---------- facts ---------- */
+  .facts-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  @media (max-width: 640px){ .facts-grid{ grid-template-columns: 1fr; } }
+
+  .fact-card{
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 22px;
+  }
+  .fact-card::before{
+    content:""; display:block; width: 30px; height: 4px; border-radius: 4px;
+    background: var(--lemon); margin-bottom: 14px;
+  }
+  .fact-card:nth-child(3n+2)::before{ background: var(--sky); }
+  .fact-card:nth-child(3n)::before{ background: var(--ink); }
+
+  .fact-card h3{ font-size: 1.02rem; margin-bottom: 8px; }
+  .fact-card p{ font-size: 0.93rem; color: var(--ink-soft); }
+
+  /* ---------- quiz ---------- */
+  .quiz-box{
+    border: 1.5px solid var(--ink);
+    border-radius: 14px;
+    padding: 32px;
+    background: var(--white);
+    box-shadow: 6px 6px 0 #aeaeae;
+  }
+
+  .quiz-progress{ font-size: 0.82rem; font-weight: 700; color: var(--ink-soft); margin-bottom: 14px; }
+  .quiz-question{ font-family:'Spectral', serif; font-size: 1.2rem; margin-bottom: 20px; }
+  .quiz-options{ display:flex; flex-direction:column; gap: 10px; }
+
+  .quiz-option{
+    text-align:left; padding: 13px 16px; border: 1.5px solid var(--line);
+    background: var(--white); border-radius: 8px;
+    font-family:'Manrope',sans-serif; font-size: 0.95rem; cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .quiz-option:hover:not(:disabled){ border-color: var(--sky); background: var(--sky-soft); }
+  .quiz-option:disabled{ cursor: default; }
+  .quiz-option.correct{ background: var(--lemon-soft); border-color: var(--lemon); font-weight: 700; }
+  .quiz-option.wrong{ background: #F4EDEA; border-color: var(--line); color: var(--ink-soft); text-decoration: line-through; }
+
+  .quiz-explain{ margin-top: 16px; font-size: 0.9rem; color: var(--ink-soft); display:none; }
+  .quiz-explain.show{ display:block; }
+
+  .quiz-next{ margin-top: 22px; display:none; }
+  .quiz-next.show{ display:inline-flex; }
+
+  .quiz-result{ display:none; text-align:center; }
+  .quiz-result.show{ display:block; }
+  .quiz-result .score{ font-family:'Spectral', serif; font-size: 2.2rem; color: var(--sky-deep); }
+  .quiz-result p{ color: var(--ink-soft); margin-top: 8px; }
+
+  /* ---------- partners ---------- */
+  .partners-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 720px){ .partners-grid{ grid-template-columns: 1fr; } }
+
+  .partner-card{ background: var(--white); border: 1px solid var(--line); border-radius: 10px; padding: 24px; }
+  .partner-card .mark{ width: 34px; height: 34px; border-radius: 8px; background: var(--sky-soft); margin-bottom: 14px; }
+  .partner-card:nth-child(2) .mark{ background: var(--lemon-soft); }
+  .partner-card:nth-child(3) .mark{ background: #F1EFE9; }
+  .partner-card h3{ font-size: 1rem; margin-bottom: 6px; }
+  .partner-card p{ font-size: 0.9rem; color: var(--ink-soft); }
+
+  /* ---------- contact ---------- */
+  .contact-card{
+    display:flex; align-items:center; justify-content: space-between; flex-wrap: wrap; gap: 24px;
+    background: var(--ink); color: var(--white); border-radius: 14px; padding: 40px;
+  }
+  .contact-card h2{ color: var(--white); font-size: 1.5rem; }
+  .contact-card p{ color: #CFCBC2; margin-top: 10px; max-width: 40ch; font-size: 0.95rem; }
+  .contact-card .btn-primary{ background: var(--lemon); color: var(--ink); }
+  .contact-card .btn-primary:hover{ background: var(--sky); }
+
+  /* ---------- footer ---------- */
+  footer{ border-top: 1px solid var(--line); padding: 30px 0 48px; background: var(--white); }
+  .footer-inner{
+    display:flex; align-items:center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px; font-size: 0.85rem; color: var(--ink-soft);
+  }
+  .footer-inner img{ height: 20px; opacity: 0.85; }
+
+  /* ---------- events modal (popover) ---------- */
+  .events-more{ margin-top: 22px; }
+
+  .modal-overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(32,29,26,0.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 200;
+  }
+  .modal-overlay.open{ display: flex; }
+
+  .modal-card{
+    background: var(--white);
+    border-radius: 14px;
+    width: 100%;
+    max-width: 720px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.28);
+  }
+
+  .modal-header{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 26px;
+    border-bottom: 1px solid var(--line);
+    flex-shrink: 0;
+  }
+
+  .modal-header h3{ font-size: 1.25rem; }
+
+  .modal-close{
+    background: var(--bg-soft);
+    border: none;
+    cursor: pointer;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    flex-shrink: 0;
+    transition: background .15s ease, color .15s ease;
+  }
+  .modal-close:hover{ background: var(--sky-soft); color: var(--sky-deep); }
+
+  .modal-body{
+    padding: 22px 26px 30px;
+    overflow-y: auto;
+  }
+
+  body.modal-open{ overflow: hidden; }
+
+
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="header-inner">
+    <a class="brand" href="#top">
+      <img src="logo_cropped.png" alt="Історичний Арсенал">
+    </a>
+    <nav>
+      <a href="#about">Про проєкт</a>
+      <a href="#events">Події</a>
+      <a href="#materials">Матеріали</a>
+      <a href="#quiz">Квізи</a>
+      <a href="#partners">Партнери</a>
+      <a href="#contact">Зв'язок</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero-about" id="about" style="border-top:none;">
+    <div class="blob blob-lemon"></div>
+    <div class="blob blob-sky"></div>
+    <div class="wrap">
+      <h1>Історія та культура України – у форматі живих зустрічей</h1>
+      <p class="lede">«Історичний Арсенал» — це простір, де історія й культура України стають темою діалогу: свята, пам'ять, побут, кухня, мистецтво і те, як минуле відлунює в сьогоденні. Говоримо мовою розмови, а не підручника.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#events">Переглянути події</a>
+        <a class="btn btn-ghost" href="https://www.instagram.com/historical_arsenal/" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn btn-ghost" href="https://www.facebook.com/p/Historical-arsenal-61568302077430" target="_blank" rel="noopener">Facebook</a>
+      </div>
+      <div class="hero-strip"></div>
+
+      <div class="about-grid">
+        <div>
+          <p>Цикл зустрічей та лекцій проходять офлайн при Українському культурному центрі в Тель-Авіві, часто у партнерстві з локальними майданчиками та спільнотою «Українські Здибанки в Ізраїлі».</p>
+          <p>Керівник та ведуча проєкту - MBA, кандидат історичних наук Ірина Сахно.</p>
+        </div>
+        <div class="pull">
+          <p>"Історія стає ближчою, <br />коли про неї говорять <br />за одним столом."</p>
+          <span>Ірина Сахно</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="events">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Події</h2>
+        <span class="section-mark">Події найближчим часом</span>
+      </div>
+
+      <a class="event-row" href="https://www.facebook.com/events/2125026968436590" target="_blank" rel="noopener">
+      <!--<div class="event-row">-->
+        <div class="event-date">22 серп</div>
+        <div class="event-main">
+          <div class="event-title">Здибанка Незалежних · 35-й День Незалежності України</div>
+          <div class="event-loc">Ukrainian Cultural Center in Tel Aviv · Яффо</div>
+        </div>
+        <div class="event-tags">
+          <div class="event-tag tag-arsenal">Embassy of Ukraine</div>
+          <div class="event-tag tag-zdybanka">Здибанки</div>
+        </div>
+      <!--</div>-->
+      </a>
+
+      <div class="events-more">
+        <button type="button" class="btn btn-ghost" id="openEventsModal">Попередні події</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="materials">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Матеріали</h2>
+        <span class="section-mark">Коротко про головне</span>
+      </div>
+      <div class="facts-grid">
+        <div class="fact-card">
+          <h3>Заснування Києва</h3>
+          <p>За літописною традицією Київ засновано 482 року — місту понад 1500 років.</p>
+        </div>
+        <div class="fact-card">
+          <h3>Запорізька Січ</h3>
+          <p>Козацька республіка на Дніпрі з виборністю старшини існувала з XVI століття.</p>
+        </div>
+        <div class="fact-card">
+          <h3>24 серпня 1991 року</h3>
+          <p>Верховна Рада ухвалила Акт проголошення незалежності України.</p>
+        </div>
+        <div class="fact-card">
+          <h3>Тарас Шевченко</h3>
+          <p>Автор «Кобзаря» — символ національного відродження та української мови.</p>
+        </div>
+        <div class="fact-card">
+          <h3>Голодомор 1932–1933</h3>
+          <p>Штучний голод, визнаний геноцидом українського народу в низці країн світу.</p>
+        </div>
+        <div class="fact-card">
+          <h3>Помаранчева революція</h3>
+          <p>Мирний протест 2004 року за чесні вибори, що об'єднав мільйони українців.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="quiz">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Квізи</h2>
+        <span class="section-mark">Перевірте себе</span>
+      </div>
+      <div class="quiz-box">
+        <div class="quiz-progress" id="quizProgress">Питання 1 з 5</div>
+
+        <div id="quizBody">
+          <div class="quiz-question" id="quizQuestion"></div>
+          <div class="quiz-options" id="quizOptions"></div>
+          <div class="quiz-explain" id="quizExplain"></div>
+          <a class="btn btn-primary quiz-next" id="quizNext">Наступне питання</a>
+        </div>
+
+        <div class="quiz-result" id="quizResult">
+          <div class="score" id="quizScore"></div>
+          <p>Дякуємо за участь у квізі «Історичного Арсеналу».</p>
+          <a class="btn btn-ghost" id="quizRestart" style="margin-top:18px;">Пройти ще раз</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="partners">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Партнери</h2>
+        <span class="section-mark">З ким ми працюємо</span>
+      </div>
+      <div class="partners-grid">
+        <div class="partner-card">
+          <div class="mark"></div>
+          <h3>Ukrainian Cultural Center in Tel Aviv</h3>
+          <p>Головний майданчик і партнер більшості зустрічей та лекцій циклу.</p>
+        </div>
+        <div class="partner-card">
+          <div class="mark"></div>
+          <h3>Українські Здибанки в Ізраїлі</h3>
+          <p>Спільнота, з якою організовуємо тематичні зустрічі й свята під прапорами.</p>
+        </div>
+        <div class="partner-card">
+          <div class="mark"></div>
+          <h3>Nothing (Яффо)</h3>
+          <p>Майданчик у Яффо для вечірок і подій формату «Історичного Арсеналу».</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="border-top: 1px solid var(--line);">
+    <div class="wrap">
+      <div class="contact-card">
+        <div>
+          <h2>Маєте ідею для зустрічі чи хочете долучитись?</h2>
+          <p>Напишіть нам в Instagram — відповідаємо особисто кожному, хто пише.</p>
+        </div>
+        <a class="btn btn-primary" href="https://www.instagram.com/historical_arsenal/" target="_blank" rel="noopener">Написати в Instagram</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="modal-overlay" id="eventsModalOverlay">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="eventsModalTitle">
+    <div class="modal-header">
+      <h3 id="eventsModalTitle">Попередні події</h3>
+      <button type="button" class="modal-close" id="closeEventsModal" aria-label="Закрити">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="year-group">
+        <div class="year-label">2026</div>
+        <div class="event-row">
+          <div class="event-date">31 трав</div>
+          <div class="event-main">
+            <div class="event-title">День Києва</div>
+            <div class="event-loc">Ukrainian Cultural Center in Tel Aviv · Яффо</div>
+          </div>
+          <div class="event-tag tag-arsenal">Embassy of Ukraine</div>
+        </div>
+      </div>
+
+      <div class="year-group">
+        <div class="year-label">2025</div>
+
+        <div class="event-row">
+          <div class="event-date">4 груд</div>
+          <div class="event-main">
+            <div class="event-title">Місто і секс. Як кохались в українських містах 19–20 ст. Еротика в літературі та мистецтві</div>
+            <div class="event-loc">Ukrainian Cultural Center in Tel Aviv · Яффо</div>
+          </div>
+          <div class="event-tag tag-arsenal">Embassy of Ukraine</div>
+        </div>
+        <div class="event-row">
+          <div class="event-date">16 жовт</div>
+          <div class="event-main">
+            <div class="event-title">День Чернівців</div>
+            <div class="event-loc">Ukrainian Cultural Center in Tel Aviv · Яффо</div>
+          </div>
+          <div class="event-tag tag-arsenal">Embassy of Ukraine</div>
+        </div>
+        <div class="event-row">
+          <div class="event-date">23 серп</div>
+          <div class="event-main">
+            <div class="event-title">Українська Здибанка під прапорами</div>
+            <div class="event-loc">Nothing: place without commitment · Яффо</div>
+          </div>
+          <div class="event-tag tag-zdybanka">Здибанки</div>
+        </div>
+        <div class="event-row">
+          <div class="event-date">6 серп</div>
+          <div class="event-main">
+            <div class="event-title">EtnoSex. Вечірка: як кохалися наші прадіди</div>
+            <div class="event-loc">Nothing: place without commitment · Яффо</div>
+          </div>
+          <div class="event-tag tag-arsenal">Embassy of Ukraine</div>
+        </div>
+        <div class="event-row">
+          <div class="event-date">1 лип</div>
+          <div class="event-main">
+            <div class="event-title">Стрес переданий у спадок: як війни минулого і сучасності вплинули на нас — і що з цим робити</div>
+            <div class="event-loc">Ukrainian Cultural Center in Tel Aviv</div>
+          </div>
+          <div class="event-tag tag-arsenal">Embassy of Ukraine</div>
+        </div>
+        <div class="event-row">
+          <div class="event-date">27 трав</div>
+          <div class="event-main">
+            <div class="event-title">Про Шавуот українською. Розповідає Міхаль Стамова</div>
+            <div class="event-loc">Ukrainian Cultural Center in Tel Aviv</div>
+          </div>
+          <div class="event-tag tag-arsenal">Embassy of Ukraine</div>
+        </div>
+        <div class="event-row">
+          <div class="event-date">25 трав</div>
+          <div class="event-main">
+            <div class="event-title">День Києва</div>
+            <div class="event-loc">Ukrainian Cultural Center in Tel Aviv</div>
+          </div>
+          <div class="event-tag tag-arsenal">Embassy of Ukraine</div>
+        </div>
+        <div class="event-row">
+          <div class="event-date">24 трав</div>
+          <div class="event-main">
+            <div class="event-title">Зустріч з Йосифом Зісельсом</div>
+            <div class="event-loc">вул. Ірмеягу 22, Тель-Авів</div>
+          </div>
+          <div class="event-tag tag-zdybanka">Здибанки</div>
+        </div>
+        <div class="event-row">
+          <div class="event-date">7 квіт</div>
+          <div class="event-main">
+            <div class="event-title">Песах — свято свободи. Розповідає ребецн Міхаль Стамова</div>
+            <div class="event-loc">вул. Ірмеягу 22, Тель-Авів – Яффо</div>
+          </div>
+          <div class="event-tag tag-arsenal">Embassy of Ukraine</div>
+        </div>
+        <div class="event-row">
+          <div class="event-date">28 бер</div>
+          <div class="event-main">
+            <div class="event-title">Фестиваль української їжі</div>
+            <div class="event-loc">Ukrainian Cultural Center · Ірмеягу 22, Тель-Авів – Яффо</div>
+          </div>
+          <div class="event-tag tag-zdybanka">Здибанки</div>
+        </div>
+        <div class="event-row">
+          <div class="event-date">12 бер</div>
+          <div class="event-main">
+            <div class="event-title">Пурім — свято опору. Розповідає ребецн Міхаль Стамова</div>
+            <div class="event-loc">Ukrainian Cultural Center in Tel Aviv</div>
+          </div>
+          <div class="event-tag tag-arsenal">Embassy of Ukraine</div>
+        </div>
+        <div class="event-row">
+          <div class="event-date">10 бер</div>
+          <div class="event-main">
+            <div class="event-title">А що б ви спитали у Тараса Шевченка?</div>
+            <div class="event-loc">Ukrainian Cultural Center in Tel Aviv</div>
+          </div>
+          <div class="event-tag tag-zdybanka">Здибанки</div>
+        </div>
+        <div class="event-row">
+          <div class="event-date">29 січ</div>
+          <div class="event-main">
+            <div class="event-title">Borshch party</div>
+            <div class="event-loc">Nothing: multi-purpose · Тель-Авів – Яффо</div>
+          </div>
+          <div class="event-tag tag-created">Знято в Україні</div>
+        </div>
+      </div>
+
+      <div class="year-group">
+        <div class="year-label">2024</div>
+        <div class="event-row">
+          <div class="event-date">13 груд</div>
+          <div class="event-main">
+            <div class="event-title">Майстер-клас з приготування куліша та смаколики з Гетьманщини</div>
+            <div class="event-loc">Ірмеягу 22, Тель-Авів – Яффо</div>
+          </div>
+          <div class="event-tag tag-arsenal">Embassy of Ukraine</div>
+        </div>
+        <div class="event-row">
+          <div class="event-date">24 лист</div>
+          <div class="event-main">
+            <div class="event-title">День пам'яті жертв Голодоморів. Фільм «Сімейний альбом»</div>
+            <div class="event-loc">Ukrainian Cultural Center in Tel Aviv</div>
+          </div>
+          <div class="event-tag tag-created">Знято в Україні</div>
+        </div>
+        <div class="event-row">
+          <div class="event-date">20 лист</div>
+          <div class="event-main">
+            <div class="event-title">Помаранчева революція: погляд через 20 років</div>
+            <div class="event-loc">Ukrainian Cultural Center in Tel Aviv</div>
+          </div>
+          <div class="event-tag tag-arsenal">Embassy of Ukraine</div>
+        </div>
+        <div class="event-row">
+          <div class="event-date">14 лист</div>
+          <div class="event-main">
+            <div class="event-title">Українська кухня в історії та кіно: Ольга Франко та «Смак свободи»</div>
+            <div class="event-loc">Тель-Авів, Ізраїль</div>
+          </div>
+          <div class="event-tag tag-created">Знято в Україні</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap footer-inner">
+    <img src="icon_only.png" alt="Історичний Арсенал">
+    <span>© 2026 Історичний Арсенал · Ізраїль</span>
+  </div>
+</footer>
+
+<script>
+  // events modal (popover)
+  const openEventsBtn = document.getElementById('openEventsModal');
+  const eventsOverlay = document.getElementById('eventsModalOverlay');
+  const closeEventsBtn = document.getElementById('closeEventsModal');
+
+  function openEventsModal(){
+    eventsOverlay.classList.add('open');
+    document.body.classList.add('modal-open');
+  }
+  function closeEventsModal(){
+    eventsOverlay.classList.remove('open');
+    document.body.classList.remove('modal-open');
+  }
+
+  if(openEventsBtn){
+    openEventsBtn.addEventListener('click', openEventsModal);
+  }
+  if(closeEventsBtn){
+    closeEventsBtn.addEventListener('click', closeEventsModal);
+  }
+  if(eventsOverlay){
+    eventsOverlay.addEventListener('click', (e) => {
+      if(e.target === eventsOverlay){ closeEventsModal(); }
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && eventsOverlay.classList.contains('open')){
+      closeEventsModal();
+    }
+  });
+
+  // shrink header on scroll (hysteresis prevents flicker: different thresholds to enter/exit)
+  const headerEl = document.getElementById('siteHeader');
+  function updateHeader(){
+    const y = window.scrollY;
+    if(y > 80){ headerEl.classList.add('scrolled'); }
+    else if(y < 20){ headerEl.classList.remove('scrolled'); }
+  }
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  updateHeader();
+
+  // quiz
+  const questions = [
+    {
+      q: "У якому році Україна проголосила незалежність?",
+      options: ["1989", "1991", "1993", "2004"],
+      correct: 1,
+      explain: "24 серпня 1991 року Верховна Рада ухвалила Акт проголошення незалежності України."
+    },
+    {
+      q: "Автор «Кобзаря», символ національного відродження України:",
+      options: ["Іван Франко", "Леся Українка", "Тарас Шевченко", "Микола Гоголь"],
+      correct: 2,
+      explain: "Тарас Шевченко — поет, художник і символ українського національного відродження."
+    },
+    {
+      q: "Яка подія 2004 року стала мирним протестом за чесні вибори?",
+      options: ["Революція Гідності", "Помаранчева революція", "Революція троянд", "Пражська весна"],
+      correct: 1,
+      explain: "Помаранчева революція 2004 року об'єднала мільйони українців у мирному протесті."
+    },
+    {
+      q: "Козацька республіка на Дніпрі, що існувала з XVI століття:",
+      options: ["Гетьманщина", "Запорізька Січ", "Слобожанщина", "Волинь"],
+      correct: 1,
+      explain: "Запорізька Січ мала виборну старшину і власний військово-політичний устрій."
+    },
+    {
+      q: "Яка дата вважається літописним заснуванням Києва?",
+      options: ["482 рік", "988 рік", "1240 рік", "1654 рік"],
+      correct: 0,
+      explain: "За літописною традицією Київ засновано 482 року — місту понад 1500 років."
+    }
+  ];
+
+  let current = 0;
+  let score = 0;
+
+  const qEl = document.getElementById('quizQuestion');
+  const oEl = document.getElementById('quizOptions');
+  const eEl = document.getElementById('quizExplain');
+  const nEl = document.getElementById('quizNext');
+  const pEl = document.getElementById('quizProgress');
+  const bodyEl = document.getElementById('quizBody');
+  const resultEl = document.getElementById('quizResult');
+  const scoreEl = document.getElementById('quizScore');
+
+  function renderQuestion(){
+    const item = questions[current];
+    pEl.textContent = `Питання ${current + 1} з ${questions.length}`;
+    qEl.textContent = item.q;
+    eEl.classList.remove('show');
+    eEl.textContent = item.explain;
+    nEl.classList.remove('show');
+    oEl.innerHTML = '';
+
+    item.options.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-option';
+      btn.textContent = opt;
+      btn.addEventListener('click', () => selectAnswer(i));
+      oEl.appendChild(btn);
+    });
+  }
+
+  function selectAnswer(i){
+    const item = questions[current];
+    const buttons = oEl.querySelectorAll('.quiz-option');
+    buttons.forEach((b, idx) => {
+      b.disabled = true;
+      if(idx === item.correct){ b.classList.add('correct'); }
+      else if(idx === i){ b.classList.add('wrong'); }
+    });
+    if(i === item.correct){ score++; }
+    eEl.classList.add('show');
+    nEl.classList.add('show');
+  }
+
+  nEl.addEventListener('click', () => {
+    current++;
+    if(current < questions.length){
+      renderQuestion();
+    } else {
+      bodyEl.style.display = 'none';
+      resultEl.classList.add('show');
+      scoreEl.textContent = `${score} / ${questions.length}`;
+    }
+  });
+
+  document.getElementById('quizRestart').addEventListener('click', () => {
+    current = 0; score = 0;
+    bodyEl.style.display = 'block';
+    resultEl.classList.remove('show');
+    renderQuestion();
+  });
+
+  renderQuestion();
+</script>
+
+</body>
+</html>
